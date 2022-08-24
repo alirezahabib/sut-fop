@@ -36,13 +36,139 @@
 ### مثال
 ورودی
 ```
-5 2 4
+1 1
 ```
 
+خروجی
 ```
-1 2 
-1 3
-4 5
+0.00 0.00
+0.33 0.00
+0.33 0.33
+0.67 0.33
+0.67 0.00
+1.00 0.00
+```
+
+ورودی
+```
+2 20
+```
+
+خروجی
+```
+0.00 0.00
+2.22 0.00
+2.22 2.22
+4.44 2.22
+4.44 0.00
+6.67 0.00
+6.67 2.22
+8.89 2.22
+8.89 4.44
+6.67 4.44
+6.67 6.67
+8.89 6.67
+8.89 8.89
+11.11 8.89
+11.11 6.67
+13.33 6.67
+13.33 4.44
+11.11 4.44
+11.11 2.22
+13.33 2.22
+13.33 0.00
+15.56 0.00
+15.56 2.22
+17.78 2.22
+17.78 0.00
+20.00 0.00
+```
+
+### پیاده‌سازی
+(کد کنار pdf پیوست شده و صرفا برای راحتی اینجا هم آورده شده و طبعا جزو سوال نیست.)
+
+```c
+#include <stdio.h>
+
+double x, y;
+int angle;
+
+void print_coordinates() {
+    // x and y are positive but small rounding error can make them negative
+    // (e.g. -0.00001 -> -0.00) this will fix the problem:
+    x = x >= 0 ? x : -x;
+    y = y >= 0 ? y : -y;
+    printf("%.2lf %.2lf\n", x, y);
+}
+
+void forward(double l) {
+    angle = (angle % 4 + 4) % 4;
+    switch (angle) {
+        case 0:
+            x += l;
+            break;
+        case 1:
+            y += l;
+            break;
+        case 2:
+            x -= l;
+            break;
+        case 3:
+            y -= l;
+            break;
+    }
+    print_coordinates();
+}
+
+void draw_left(int n, double l);
+void draw_right(int n, double l);
+
+int main() {
+    int n;
+    double l;
+    scanf("%d %lf", &n, &l);
+    x = 0;
+    y = 0;
+    angle = 0;
+
+    print_coordinates();
+    draw_left(n, l);
+
+    return 0;
+}
+
+void draw_left(int n, double l) {
+    if (n == 0) {
+        forward(l);
+        return;
+    }
+    draw_left(n - 1, l / 3);
+    angle++;
+    draw_right(n - 1, l / 3);
+    angle--;
+    draw_left(n - 1, l / 3);
+    angle--;
+    draw_right(n - 1, l / 3);
+    angle++;
+    draw_left(n - 1, l / 3);
+}
+
+void draw_right(int n, double l) {
+    if (n == 0) {
+        forward(l);
+        return;
+    }
+    draw_right(n - 1, l / 3);
+    angle--;
+    draw_left(n - 1, l / 3);
+    angle++;
+    draw_right(n - 1, l / 3);
+    angle++;
+    draw_left(n - 1, l / 3);
+    angle--;
+    draw_right(n - 1, l / 3);
+}
+
 ```
 
 
