@@ -10,20 +10,26 @@
 ### برنامه
 با توجه به الگوی زیر در فرکتال‌ها برنامه‌ای بنویسید که با گرفتن n (مرتبه‌ی فرکتال) و l (عرض کل فرکتال) مختصات نقاطی را بدهد که کودک با وصل کردن آن‌ها به شکل کامل برسد. فرض کنید نقطه‌ی شروع همیشه سمت چپ فرکتال و مبدا مختصات `(0 0)` است.
 
-![zeroth order fractal](./fractal0.png)
+<img src="./fractal0.png" width="500">
+
 *n = 0*
 
-![first order fractal](./fractal1.png)
+<img src="./fractal1.png" width="500">
+
 *n = 1*
 
-![second order fractal](./fractal2.png)
+<img src="./fractal2.png" width="500">
+
 *n = 2*
 
-![third order fractal](./fractal3.png)
+<img src="./fractal3.png" width="500">
+
 *n = 3*
 
-![fourth order fractal](./fractal4.png)
+<img src="./fractal4.png" width="500">
+
 *n = 4*
+
 
 ![plot example](./plot.png)
 
